@@ -1,6 +1,6 @@
 import pool from '../database/keys';
 
-const aliado = {};
+const aliado = {};  
 
 aliado.createCita =  async(req, res) => {
 
@@ -22,8 +22,10 @@ aliado.createCita =  async(req, res) => {
        
        
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             message: 'A ocurrido un error!!',
+           
             error
         })
     }
