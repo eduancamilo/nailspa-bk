@@ -2,18 +2,20 @@ import pool from '../database/keys';
 
 const aliado = {};
 
-aliado.createCita = async (req, res) => {
+aliado.createCita =  async(req, res) => {
 
     const {cli_name,cli_lastname, c_date,c_time,email,cli_address,cli_telephone,c_s_id,c_u_id, c_cli_id} = req.body;
-
+    
     try {
+        console.log(req.body)
         await pool.query('INSERT INTO clientes(cli_name,cli_lastname,cli_telephone,cli_email,cli_address) VALUES ($1,$2,$3,$4,$5)',[cli_name,cli_lastname,cli_telephone,email,cli_address]);     
         await pool.query('INSERT INTO citas(c_date,c_time,c_s_id,c_u_id,c_cli_id) VALUES ($1,$2,$3,$4,$5)', [c_date, c_time, c_s_id, c_u_id, c_cli_id]);
         res.status(200).json({
             message: 'Cita registrada Correctamente',
             cita: {
                 c_date,
-                c_time
+                c_time,
+                c_s_id
             }
         });
       
